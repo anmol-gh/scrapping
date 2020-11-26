@@ -1,0 +1,19 @@
+#scrapping school website
+
+import requests as r
+from bs4 import BeautifulSoup as BS
+a = input('school website link')    #a='http://pinewoodschool.in/22-11-2020-class12th.php'
+school=BS(r.get(a).text,'lxml') 
+link=school.find('table').find_all('td')
+
+import webbrowser as wb
+from pyautogui import click
+from time import sleep
+
+for i in link:
+    if i.text.upper()=='MATHS CLICK HERE' or i.text.upper()=='MATHS CLIKC HERE' or i.text.upper()=='ENGLISH CLICK HERE' or i.text.upper()=='ENGLISH CLIKC HERE'or i.text.upper()=='CHEMISTRY CLICK HERE' or i.text.upper()=='CHEMISTRY CLIKC HERE' or i.text.upper()=='PHYSICS CLIKC HERE'or i.text.upper()=='PHYSICS CLICK HERE':
+        print(i.prettify())
+        wb.open(i.find('a')['href'])
+        sleep(5)
+        click(x=1190,y=100) 
+
